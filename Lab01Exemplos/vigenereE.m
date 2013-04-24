@@ -13,8 +13,9 @@ tamTexto = length(P);
 tamChave = length(K);
 chaveAux = (mod([0:tamTexto - 1], 3) + 1) * -1;
 
+K = K - 'a';
 for i=1:tamChave
-chaveAux(find(chaveAux == i*-1)) = K(i) - 'a';
+chaveAux(find(chaveAux == i*-1)) = K(i);
 endfor
 
 P = mod(P - 'a' + chaveAux, 26) + 'a';

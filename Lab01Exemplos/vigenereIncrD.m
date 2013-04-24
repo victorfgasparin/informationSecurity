@@ -1,4 +1,4 @@
-function C = vigenereD(P,K)
+function C = vigenereIncrD(P,K)
 
 C = P;
 % Elimina caracteres que nao sao texto
@@ -11,14 +11,12 @@ P(indexCaixaAlta) = P(indexCaixaAlta) + ('a'-'A');
 
 tamTexto = length(P);
 tamChave = length(K);
-chaveAux = (mod([0:tamTexto - 1], 3) + 1) * -1;
-
 K = K - 'a';
-for i=1:tamChave
-chaveAux(find(chaveAux == i*-1)) = K(i);
-endfor
 
-P = mod(P - 'a' - chaveAux, 26) + 'a';
+aux = [2:tamTexto];
+P(aux) = mod(P(aux) - P(aux-1), 26) + 'a';
+
+P(1) = mod(P(1) - 'a' - K, 26) + 'a';
 
 % Retorna para caixa alta
 P(indexCaixaAlta) = P(indexCaixaAlta) + ('A'-'a');
